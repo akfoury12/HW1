@@ -152,3 +152,8 @@ from cast as A
 inner join movies as b
 on a.movie_id = b.movie_id
 order by a.movie_id; 
+
+-- Student Note: Running code via Gitpod results in first observation of each table setting the max character length for each text variable.
+-- I have tried both TEXT and VARCHAR(50) formats but no luck in fixing truncation. No luck finding a fix online on stack exchange or other forums, other than complex
+-- solutions which would seem way too complex for such a basic problem.
+-- Is this possibly a gitpod specific issue? Can a fix be shared with the class? we did not cover this.
