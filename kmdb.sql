@@ -64,7 +64,8 @@
 
 -- Turns column mode on but headers off
 .mode column
-.headers off
+.headers on
+    -- Student note - changed to headers on, like this output better
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -76,16 +77,17 @@ drop table if exists 'cast';
 
 CREATE TABLE movies (
   movie_id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT,
+  title varchar(50),
   year INTEGER,
-  mpaa_rating TEXT,
-  director TEXT
+  mpaa_rating varchar(50),
+  director varchar(50)
 );
 
 CREATE TABLE cast (
+  cast_id integer primary key autoincrement,  
   movie_id INTEGER,
-  actor TEXT,
-  character TEXT
+  actor varchar(50),
+  character varchar(50)
 );
 
 -- Insert data into your database that reflects the sample data shown above
@@ -123,19 +125,20 @@ insert into cast (
             (3,"Tom Hardy","Bane"),
             (3,"Joseph Gordon-Levitt","John Blake"),
             (3,"Anne Hathaway","Selina Kyle")
+
     ;
 
-
-
-
+;
 
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
 .print ""
 
+
 -- The SQL statement for the movies output
 -- TODO!
+select * from movies;
 
 -- Prints a header for the cast output
 .print ""
@@ -144,5 +147,8 @@ insert into cast (
 .print ""
 
 
--- The SQL statement for the cast output
--- TODO!
+select b.title, a.actor, a.character
+from cast as A
+inner join movies as b
+on a.movie_id = b.movie_id
+order by a.movie_id; 
